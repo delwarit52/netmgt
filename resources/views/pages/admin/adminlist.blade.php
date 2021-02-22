@@ -5,7 +5,7 @@
         <div class="col-12">
             <div class="card-box table-responsive">
                 <div class="d-flex justify-content-between">
-                    <h1 class="m-t-0 w-100 text-center"><b>Admin List</b></h1>\
+                    <h1 class="m-t-0 w-100 text-center"><b>Admin List</b></h1>
                     @if (Auth::user()->type == 0)
                         <div>
                             <button class="btn btn-primary waves-effect waves-light" data-toggle="modal" data-target=".admin-add-modal">Add New Admin</button>
