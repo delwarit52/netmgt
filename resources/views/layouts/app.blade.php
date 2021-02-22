@@ -179,6 +179,10 @@
                                 </ul>
                             </li>
 
+                            <li>
+                                <a href="{{ route('withdraw') }}" class="waves-effect"><i class="mdi mdi-format-font"></i> <span> Withdraw </span> </a>
+                            </li>
+
                             {{-- <li>
                                 <a href="{{ route('dashboard.adminlist') }}" class="waves-effect"><i class="mdi mdi-format-font"></i> <span> Admins List </span> </a>
                             </li>
