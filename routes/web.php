@@ -75,6 +75,8 @@ Route::get('/registration/form', [CustomerController::class, 'index'])->name('re
 Route::post('/customer/form/post', [CustomerController::class, 'store'])->name('customer.form.post');
 
 
+
+
 // Withdraw Route 
 Route::get('/dashboard/withdraw', [WithdrawController::class, 'index'])->name('withdraw');
 Route::post('/dashboard/withdraw/store', [WithdrawController::class, 'store'])->name('withdraw.store');
