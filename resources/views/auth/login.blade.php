@@ -32,7 +32,7 @@
                         @csrf
                         <div class="form-group">
                             <label for="emailAddress">Email address*</label>
-                            <input type="email" name="email" parsley-trigger="change" 
+                            <input type="text" name="email" parsley-trigger="change" 
                                    placeholder="Enter email" class="form-control" id="emailAddress">
                         </div>
                         @error('email')
@@ -59,11 +59,7 @@
                         <div class="form-group">
                             <div class="offset-sm-4 col-sm-8">
                                 <button type="submit" class="btn btn-primary waves-effect waves-light">
-                                    Registrer
-                                </button>
-                                <button type="reset"
-                                        class="btn btn-secondary waves-effect waves-light m-l-5">
-                                    Cancel
+                                    Login
                                 </button>
                             </div>
                         </div>
