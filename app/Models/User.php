@@ -51,8 +51,13 @@ class User extends Authenticatable
         return $this->hasOne(AdminModel::class);
     }
 
-    public function expense()
+    public function ExpenseModel()
     {
         return $this->hasMany(ExpenseModel::class);
+    }
+
+    public function WithdrawModel()
+    {
+        return $this->hasMany(WithdrawModel::class);
     }
 }

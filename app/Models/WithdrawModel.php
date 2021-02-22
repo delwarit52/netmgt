@@ -5,13 +5,15 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class ExpenseModel extends Model
+class WithdrawModel extends Model
 {
     use HasFactory;
-    protected $fillable = ['user_id', 'purpose', 'amount'];
+
+    protected $fillable = ['user_id', 'amount'];
 
     public function User()
     {
         return $this->belongsTo(User::class);
     }
+
 }
