@@ -46,7 +46,7 @@
                     </div>
                 </div>
 
-                @if($user->type != 0 || $user->type != 3)
+                @if($user->type == 1)
                     <div class="row">
                         <div class="col-md-6 col-sm-12">
                             <div class="form-group">

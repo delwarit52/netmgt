@@ -8,6 +8,7 @@ use App\Http\Controllers\ExpenseController;
 use App\Http\Controllers\PackageController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\AdminCustomerController;
+use App\Http\Controllers\WithdrawController;
 
 
 
@@ -72,3 +73,9 @@ Route::get('/customer/delete/{id}', [AdminCustomerController::class, 'customerde
 // Customer Route 
 Route::get('/registration/form', [CustomerController::class, 'index'])->name('registration.form');
 Route::post('/customer/form/post', [CustomerController::class, 'store'])->name('customer.form.post');
+
+
+// Withdraw Route 
+Route::get('/dashboard/withdraw', [WithdrawController::class, 'index'])->name('withdraw');
+Route::post('/dashboard/withdraw/store', [WithdrawController::class, 'store'])->name('withdraw.store');
+Route::post('/dashboard/withdraw/update', [WithdrawController::class, 'update'])->name('withdraw.update');
