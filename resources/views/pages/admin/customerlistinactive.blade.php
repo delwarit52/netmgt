@@ -114,33 +114,8 @@
                                                     
                                                 </div>
 
-                                                <div class="border border-danger p-4">
-                                                    <h1 class="text-center">Give an ID And Demo Password</h1>
-                                                    <form method="POST" action="{{ route('customer.register') }}" data-parsley-validate novalidate>
-                                                        @csrf
-                                                            <input type="hidden" name="id" value="{{ $customer->id }}">
-                                                            <input type="hidden" name="name" value="{{ $customer->name }}">
-                                                            <input type="hidden" name="phone" value="{{ $customer->phone }}">
-                                                            <div class="form-group">
-                                                                <label>User Id*</label>
-                                                                <input type="text" name="net_id" parsley-trigger="change" required
-                                                                placeholder="Enter User Id" class="form-control" value="">
-                                                            </div>
-                                                            @error('net_id')
-                                                                <div class="alert alert-danger">{{ $message }}</div>
-                                                            @enderror
-                                                            <div class="form-group">
-                                                                <label>User password*</label>
-                                                                <input type="password" name="password" parsley-trigger="change" required
-                                                                placeholder="Enter User password" class="form-control" value="">
-                                                            </div>
-                                                            @error('password')
-                                                                <div class="alert alert-danger">{{ $message }}</div>
-                                                            @enderror
-                                                            <div class="modal-footer">
-                                                                <button type="submit" class="btn btn-primary waves-effect waves-light">Save</button>
-                                                            </div>
-                                                    </form>
+                                                <div class="d-flex justify-content-end">
+                                                    <a class="btn btn-sm btn-primary" href="{{ route('customer.inactive',$customer->id) }}">Reactive</a>
                                                 </div>
                                             </div>
                                         </div><!-- /.modal-content -->

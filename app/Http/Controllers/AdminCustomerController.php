@@ -79,7 +79,7 @@ class AdminCustomerController extends Controller
 
     public function customeractive($id)
     {
-        CustomerModel::find($id)->update([
+        CustomerModel::where('id', $id)->update([
             'status' => 2,
         ]);
         InvioceModel::where('cust_id', $id)->update([

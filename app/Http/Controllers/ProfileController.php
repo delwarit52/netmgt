@@ -32,7 +32,8 @@ class ProfileController extends Controller
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'email', 'max:255', Rule::unique('users')->ignore(Auth::user()->id)],
-            'phone' => ['required', Rule::unique('users')->ignore(Auth::user()->id)],
+            // 'phone' => ['required', Rule::unique('users')->ignore(Auth::user()->id)],
+            'phone' => ['required'],
         ]);
 
 
@@ -91,9 +92,14 @@ class ProfileController extends Controller
                     'password'=>Hash::make($request->password),
                 ]
             );
+
+            $user = User::where('id', Auth::user()->id)->first();
+            return redirect()->route('dashboard.profile')->with(['user' => $user]);
         }
 
+        
+
         $user = User::where('id', Auth::user()->id)->first();
-        return redirect()->route('dashboard.profile')->with(['user' => $user]);
+        return redirect()->route('dashboard.profile')->with(['user' => $user])->with('oldpassword', 'Old Password does not match..');
     }
 }
