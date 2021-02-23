@@ -23,10 +23,10 @@
         <!-- App css -->
         <link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css" />
         <link href="{{ asset('assets/css/icons.css') }}" rel="stylesheet" type="text/css" />
-        <link href="{{ asset('admin/assets/css/style.css') }}" rel="stylesheet" type="text/css" />
-        <link href="{{ asset('admin/assets/css/custom.css') }}" rel="stylesheet" type="text/css" />
+        <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet" type="text/css" />
+        <link href="{{ asset('assets/css/custom.css') }}" rel="stylesheet" type="text/css" />
 
-        <script src="{{ asset('admin/assets/js/modernizr.min.js') }}"></script>
+        <script src="{{ asset('assets/js/modernizr.min.js') }}"></script>
 
     </head>
 
@@ -157,7 +157,7 @@
 
         @yield('section_script')
 
-{{-- toastr js --}}
+    {{-- toastr js --}}
     <script>
         @if(Session::has('succsess'))
             // Display a success toast, with a title

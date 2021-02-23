@@ -46,10 +46,10 @@ class WithdrawController extends Controller
                     "amount" => $request->amount,
                 ]
             );
-            return redirect()->route('withdraw')->with('succsess', 'add successfully');
+            return redirect()->route('withdraw')->with('succsessedit', 'add successfully');
         }
 
-        return redirect()->route('withdraw')->with('succsess', 'Not successfully');
+        return redirect()->route('withdraw');
         
     }
 

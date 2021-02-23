@@ -3,14 +3,14 @@
     <div class="card-box">
         <!-- /Insert modal Btn -->
         <div class="form-group text-right m-b-0">
-            <button class="btn btn-primary waves-effect waves-light" data-toggle="modal" data-target="#InsertModal">Add Package</button>
+            <button class="btn btn-primary waves-effect waves-light" data-toggle="modal" data-target="#InsertModal">Add Withdraw</button>
         </div>
         <!-- Insert modal content -->
         <div id="InsertModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h4 class="modal-title" id="myModalLabel">Enter Amount</h4>
+                        <h4 class="modal-title" id="myModalLabel">Withdraw</h4>
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                     </div>
                     <div class="modal-body">
@@ -56,7 +56,7 @@
         <div class="row">
             <div class="col-12">
                 <div class="card-box table-responsive">
-                    <h1 class="m-t-0 header-title" style="font-size:40px; text-align:center; margin-bottom:50px !important;"><b>List Of Admin</b></h1>
+                    <h1 class="m-t-0 header-title" style="font-size:40px; text-align:center; margin-bottom:50px !important;"><b>List Of Withdraw</b></h1>
 
                     <table id="datatable-buttons" class="table table-striped table-bordered" cellspacing="0" width="100%">
                         <thead>
@@ -145,15 +145,11 @@
     <script>
         @if(Session::has('succsess'))
             // Display a success toast, with a title
-            toastr.success('You Have Successfully Created Package', 'Congratulation!')
+            toastr.success('You Have Successfully Created Withdraw', 'Congratulation!')
         @endif
         @if(Session::has('succsessedit'))
             // Display a success toast, with a title
-            toastr.success('You Have Successfully update Package', 'Congratulation!')
-        @endif
-        @if(Session::has('succsessdelete'))
-            // Display a success toast, with a title
-            toastr.success('You Have Successfully delete Package', 'Congratulation!')
+            toastr.success('You Have Successfully update Withdraw', 'Congratulation!')
         @endif
 
 

@@ -9,14 +9,14 @@ class InvioceModelController extends Controller
 {
     public function index()
     {
-        return view('invioce', [
+        return view('pages.admin.invioce', [
             'total_invioce' => InvioceModel::all(),
         ]);
     }
 
     public function singleinvioce($id)
     {
-        return view('singleinvioce', [
+        return view('pages.singleinvioce', [
             'single_invioces' => InvioceModel::find($id)->first(),
         ]);
     }
