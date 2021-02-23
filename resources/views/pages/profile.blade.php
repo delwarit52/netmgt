@@ -68,7 +68,7 @@
                             @if ($user->type != 0)
                                 <div class="form-group">
                                     <label for="address">Address*</label>
-                                    <textarea class="form-control w-100 h-100" name="address" id="" cols="" rows="5">
+                                    <textarea class="form-control w-100 h-100" name="address" id="">
                                         {{ $user->admin->address }}
                                     </textarea>
                                 </div>

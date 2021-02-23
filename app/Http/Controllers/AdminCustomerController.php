@@ -17,25 +17,25 @@ class AdminCustomerController extends Controller
 {
 
     public function customerall(){
-        return view('pages.admin.customerlist',[
+        return view('pages.admin.customerlistall',[
             'customers' => CustomerModel::where('status','!=', 0)->get(),
             'heading' => "ALl Customer List"
         ]);
     }
     public function customeractivelist(){
-        return view('pages.admin.customerlist',[
+        return view('pages.admin.customerlistactive',[
             'customers' => CustomerModel::where('status', 1)->get(),
-            'heading' => "Old Active Customer List"
+            'heading' => "Active Customer List"
         ]);
     }
     public function customerinactivelist(){
-        return view('pages.admin.customerlist',[
+        return view('pages.admin.customerlistinactive',[
             'customers' => CustomerModel::where('status', 2)->get(),
             'heading' => "Inactive Customer List"
         ]);
     }
     public function customernewlist(){
-        return view('pages.admin.customerlist',[
+        return view('pages.admin.customerlistnew',[
             'customers' => CustomerModel::where('status', 0)->get(),
             'heading' => "New Request Customer List"
         ]);
@@ -101,14 +101,8 @@ class AdminCustomerController extends Controller
 
     public function customerdelete($id)
     {
-        $customer = CustomerModel::find($id);
-
-        if ($customer->user_id) {
-            User::where('email', $customer->user_id)->delete();
-        }
-        $customer->delete();
-
-        return back()->with('succsess', 'add successfully');
+        CustomerModel::where('id', $id)->delete();
+        return back()->with('succsess', 'Delete successfully');
     }
 
 }
