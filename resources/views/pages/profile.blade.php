@@ -93,6 +93,12 @@
                             <label for="pass1">Password*</label>
                             <input id="pass1" name="oldpassword" type="password" placeholder="Old Password" required
                                 class="form-control" autocomplete="">
+                            @if(session()->has('oldpassword'))
+                                <div class="alert alert-danger">{{ session('oldpassword') }}</div>
+                            @endif 
+                            @error('oldpassword')
+                                <div class="alert alert-danger">{{ $message }}</div>
+                            @enderror
                         </div>
                         <div class="form-group">
                             <label for="pass1">Password*</label>
