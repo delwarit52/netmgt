@@ -26,7 +26,6 @@
                                                 <div class="row">
                                                     <div class="col-md-6 col-sm-12">
                                                         <div class="card-box">
-                                                            {{-- <h4 class="header-title">Default File</h4> --}}
                                                             <input type="file" class="dropify" data-default-file="" name="profile_img" />
                                                             @error('profile_img')
                                                                 <div class="alert alert-danger">{{ $message }}</div>
@@ -147,16 +146,16 @@
                                         <td class="align-middle text-center">{{ $user->name }}</td>
                                         <td class="align-middle text-center">{{ $user->email }}</td>
                                         <td class="align-middle text-center">{{ $user->phone }}</td>
-                                        <td class="align-middle text-center">{{ $user->admin->profit_percentage }}</td>
+                                        <td class="align-middle text-center">{{ $user->admin->profit_percentage }}%</td>
                                         @if (Auth::user()->type == 0)
                                         <td class="align-middle text-center">
                                             <a href="{{ route('admin.delete',$user->id) }}" class="btn btn-danger btn-sm rounded-0" >
-                                                <i class="far fa-trash-alt">d</i>
+                                                <i class="far fa-trash-alt"></i>
                                             </a>
 
                                             {{-- Edit Modal Button --}}
                                             <button  class="btn btn-success btn-sm rounded-0" data-toggle="modal" data-target="#editModal{{ $user->id }}">
-                                                <i class="far fa-trash-alt">E</i>
+                                                <i class="far fa-edit"></i>
                                             </button>
                                             <!-- Edit Modal Start-->
                                             <div id="editModal{{ $user->id }}" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -190,7 +189,6 @@
                                                                             <label for="userName">Slect Admin Type*</label>
                                                                             <select class="form-control" name="user_type" id="">
                                                                                 <option value="1">Admin</option>
-                                                                                <option value="2">Admin2</option>
                                                                             </select>
                                                                         </div>
                                                                     </div>
@@ -239,4 +237,27 @@
             </div>
         </div>
     </div>
+@endsection
+
+@section('section_script')
+     {{-- toastr js --}}
+        <script>
+            @if(Session::has('success'))
+                // Display a success toast, with a title
+                toastr.success('Your Successfully  Registered', 'Congratulation!')
+            @endif
+            @if(Session::has('deletesuccess'))
+                // Display a success toast, with a title
+                toastr.success('Your Delete Successfully', 'Congratulation!')
+            @endif
+            @if(Session::has('editsuccess'))
+                // Display a success toast, with a title
+                toastr.success('Your Edited Successfully', 'Congratulation!')
+            @endif
+        
+            @if ($errors->any())
+                // Display an error toast, with a title
+                toastr.error('You Have Any Error', 'Sorry!')
+            @endif
+        </script>
 @endsection

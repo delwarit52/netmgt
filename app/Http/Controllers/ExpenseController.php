@@ -22,9 +22,12 @@ class ExpenseController extends Controller
         return redirect()->route('expense')->with('succsess', 'add successfully');
     }
 
-    public function update($id)
+    public function update($id ,Request $request)
     {
-        ExpenseModel::find($id)->update($this->validation());
+        ExpenseModel::where('id',$id)->update([
+            'purpose' => $request->purpose,
+            'amount' => $request->amount,
+        ]);
         return redirect()->route('expense')->with('succsessedit', 'update successfully');
     }
 

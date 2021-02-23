@@ -71,7 +71,7 @@ class AdminController extends Controller
         $admin->address = $request->address;
         $admin->save();
 
-        return redirect()->back()->with('success');
+        return redirect()->back()->with('success' , 'Admin Created Successfully');
         
     }
 
@@ -89,13 +89,13 @@ class AdminController extends Controller
 	            'messege' => 'user deleted Successful',
 	            'alert-type' => 'success',
 	        );
-    		return redirect()->back()->with($notification);
+    		return redirect()->back()->with('deletesuccess', 'Admin delete Successfully');
     	}else{
     		$notification = array(
 	            'messege' => 'Ups..user not deleted',
 	            'alert-type' => 'error',
 	        );
-	        return redirect()->back()->with($notification);
+	        return redirect()->back()->with('deletesuccess', 'Admin delete Successfully');
     	}
     }
 
@@ -130,7 +130,7 @@ class AdminController extends Controller
             
         }
 
-        return redirect()->back();
+        return redirect()->back()->with('editsuccess', 'Admin Edit Successfully');
 
     }
 
