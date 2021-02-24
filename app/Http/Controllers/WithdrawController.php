@@ -15,6 +15,11 @@ use App\Models\WithdrawModel;
 
 class WithdrawController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('customerrules');
+    }
+
     public function index()
     {
         return view('pages.admin.withdraw', [

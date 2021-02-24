@@ -8,6 +8,11 @@ use App\Models\ExpenseModel;
 
 class ExpenseController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('customerrules');
+    }
+
     public function index()
     {
         return view('pages.admin.expense', [

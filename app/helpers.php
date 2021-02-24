@@ -7,7 +7,6 @@ use Carbon\Carbon;
 
 function customer_package($id)
 {
-    // return $id;
     return App\Models\PackageModel::where('id', $id)->first();
 }
 
@@ -32,16 +31,15 @@ function newusernotification()
                 'message' => 'New User, Active Now',
                 'ago' => $data->created_at->diffForHumans(),
                 'messagetype' => 'newuser',
-                // 'date' => (Carbon::now()->diffInHours($data->updated_at))/24,
             ];
             array_push($notifications, $create_notification);
         }
-        if(((Carbon::now()->diffInHours($data->active_date))/24)>2 && $data->status == 2){
+        if(((Carbon::now()->diffInHours($data->active_date))/24)>30 && $data->status == 2){
             $create_notification = [
                 'id' => $data->id,
                 'username' => $data->name,
                 'message' => 'Date Expire',
-                'ago' => $data->updated_at->diffForHumans(),
+                'ago' => $data->active_date,
                 'messagetype' => 'dateexpire',
             ];
             array_push($notifications, $create_notification);
@@ -51,5 +49,12 @@ function newusernotification()
     return $notifications;
 }
 
+function usernotification(){
+    $datas = App\Models\CustomerModel::where('user_id',Auth::id())->first();
+    if (((Carbon::now()->diffInHours($datas->active_date)) / 24) > 25 && ((Carbon::now()->diffInHours($datas->active_date)) / 24) < 30 ) {
+       return 'Your package will expire withing '. intval(30 - ((Carbon::now()->diffInHours($datas->active_date)) / 24));
+    }
 
+    return 'Your package expired '. intval((Carbon::now()->diffInHours($data->active_date)) / 24);
+}
 

@@ -41,10 +41,10 @@
                         <div class="row">
                             @foreach ($packages as $package)
                                 <div class="col-lg-3 col-md-3 col-sm-6 selection-wrapper">
-                                    <label for="selected-item-{{ $package->id }}" class="card selected-label">
+                                    <label for="selected-item-{{ $package->id }}" class="card selected-label bg-success">
                                         <input type="radio" name="package_id" id="selected-item-{{ $package->id }}" value="{{ $package->id }}">
                                         <span class="icon"></span>
-                                        <div class="selected-content">
+                                        <div class="selected-content bg-primary text-white">
                                             <h3 class="card-title">{{ $package->package_title }}</h3>
                                             <h5 class="card-title">{{ $package->package_speed }}</h5>
                                             <p class="card-text">{{ $package->package_discription }}</p>

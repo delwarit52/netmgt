@@ -19,6 +19,13 @@ use App\Models\AdminModel;
 
 class AdminController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('customerrules');
+    }
+
+
+    
     public function index()
     {
         // return view('admin.adminlist');

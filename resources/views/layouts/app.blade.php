@@ -76,39 +76,29 @@
                                 <h4 class="page-title">Dashboard</h4>
                             </li>
                         </ul>
-
-                        <nav class="navbar-custom">
-
-                            <ul class="list-unstyled topbar-right-menu float-right mb-0">
-
-                                <li>
-                                    <!-- Notification -->
-                                    <div class="notification-box">
-                                        <ul class="list-inline mb-0">
-                                            <li>
-                                                <a href="javascript:void(0);" class="right-bar-toggle">
-                                                    <i class="mdi mdi-bell-outline noti-icon"></i>
-                                                </a>
-                                                <div class="noti-dot">
-                                                    <span class="dot"></span>
-                                                    <span class="pulse"></span>
-                                                </div>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <!-- End Notification bar -->
-                                </li>
-
-                                <li class="hide-phone">
-                                    <form class="app-search">
-                                        <input type="text" placeholder="Search..."
-                                               class="form-control">
-                                        <button type="submit"><i class="fa fa-search"></i></button>
-                                    </form>
-                                </li>
-
-                            </ul>
-                        </nav>
+                        @if (Auth::user()->type != 3)
+                            <nav class="navbar-custom">
+                                <ul class="list-unstyled topbar-right-menu float-right mb-0">
+                                    <li>
+                                        <!-- Notification -->
+                                        <div class="notification-box">
+                                            <ul class="list-inline mb-0">
+                                                <li>
+                                                    <a href="javascript:void(0);" class="right-bar-toggle">
+                                                        <i class="mdi mdi-bell-outline noti-icon"></i>
+                                                    </a>
+                                                    <div class="noti-dot">
+                                                        <span class="dot"></span>
+                                                        <span class="pulse"></span>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <!-- End Notification bar -->
+                                    </li>
+                                </ul>
+                            </nav>
+                        @endif
                     </div><!-- end container -->
                 </div><!-- end navbar -->
             </div>
@@ -158,51 +148,41 @@
                                 <a href="{{ route('dashboard.profile') }}" class="waves-effect"><i class="mdi mdi-format-font"></i> <span> Profile </span> </a>
                             </li>
 
-                            <li>
-                                <a href="{{ route('dashboard.adminlist') }}" class="waves-effect"><i class="mdi mdi-format-font"></i> <span> Admins List </span> </a>
-                            </li>
+                            @if (Auth::user()->type != 3)
+                                <li>
+                                    <a href="{{ route('dashboard.adminlist') }}" class="waves-effect"><i class="mdi mdi-format-font"></i> <span> Admins List </span> </a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('expense') }}" class="waves-effect"><i class="mdi mdi-format-font"></i> <span> Expense List </span> </a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('package') }}" class="waves-effect"><i class="mdi mdi-format-font"></i> <span> Package List </span> </a>
+                                </li>
+                                <li class="has_sub">
+                                    <a href="javascript:void(0);" class="waves-effect"><i class="mdi mdi-invert-colors"></i> <span> Customer </span> <span class="menu-arrow"></span></a>
+                                    <ul class="list-unstyled">
+                                        <li>
+                                            <a href="{{ route('customer.alllist') }}" class="waves-effect"><i class="mdi mdi-format-font"></i> <span>All</span> </a>
+                                        </li>
+                                        <li>
+                                            <a href="{{ route('customer.newlist') }}" class="waves-effect"><i class="mdi mdi-format-font"></i> <span>New Request</span> </a>
+                                        </li>
+                                        <li>
+                                            <a href="{{ route('customer.activelist') }}" class="waves-effect"><i class="mdi mdi-format-font"></i> <span>Active</span> </a>
+                                        </li>
+                                        <li>
+                                            <a href="{{ route('customer.inactivelist') }}" class="waves-effect"><i class="mdi mdi-format-font"></i> <span>Inactive</span> </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href="{{ route('withdraw') }}" class="waves-effect"><i class="mdi mdi-format-font"></i> <span> Withdraw </span> </a>
+                                </li>
+                                <li>
+                                <a href="{{ route('invioce') }}" class="waves-effect"><i class="mdi mdi-format-font"></i> <span> Invioce </span> </a>
+                                </li>
 
-                            <li>
-                                <a href="{{ route('expense') }}" class="waves-effect"><i class="mdi mdi-format-font"></i> <span> Expense List </span> </a>
-                            </li>
-                            <li>
-                                <a href="{{ route('package') }}" class="waves-effect"><i class="mdi mdi-format-font"></i> <span> Package List </span> </a>
-                            </li>
-
-                            <li class="has_sub">
-                                <a href="javascript:void(0);" class="waves-effect"><i class="mdi mdi-invert-colors"></i> <span> Customer </span> <span class="menu-arrow"></span></a>
-                                <ul class="list-unstyled">
-                                    <li>
-                                        <a href="{{ route('customer.alllist') }}" class="waves-effect"><i class="mdi mdi-format-font"></i> <span>All</span> </a>
-                                    </li>
-                                    <li>
-                                        <a href="{{ route('customer.newlist') }}" class="waves-effect"><i class="mdi mdi-format-font"></i> <span>New Request</span> </a>
-                                    </li>
-                                    <li>
-                                        <a href="{{ route('customer.activelist') }}" class="waves-effect"><i class="mdi mdi-format-font"></i> <span>Active</span> </a>
-                                    </li>
-                                    <li>
-                                        <a href="{{ route('customer.inactivelist') }}" class="waves-effect"><i class="mdi mdi-format-font"></i> <span>Inactive</span> </a>
-                                    </li>
-                                </ul>
-                            </li>
-
-                            <li>
-                                <a href="{{ route('withdraw') }}" class="waves-effect"><i class="mdi mdi-format-font"></i> <span> Withdraw </span> </a>
-                            </li>
-                            
-                            <li>
-                              <a href="{{ route('invioce') }}" class="waves-effect"><i class="mdi mdi-format-font"></i> <span> Invioce </span> </a>
-                            </li>
-
-                            {{-- <li>
-                                <a href="{{ route('dashboard.adminlist') }}" class="waves-effect"><i class="mdi mdi-format-font"></i> <span> Admins List </span> </a>
-                            </li>
-
-                            <li>
-                                <a href="{{ route('dashboard.profile') }}" class="waves-effect"><i class="mdi mdi-format-font"></i> <span> Profile </span> </a>
-                            </li> --}}
-
+                            @endif
                         </ul>
                         <div class="clearfix"></div>
                     </div>

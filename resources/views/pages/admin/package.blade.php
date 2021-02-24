@@ -59,7 +59,7 @@
         
         @foreach ($packages as $package)
             <div class="col-lg-4 col-md-4 col-sm-6 col-12" >
-                <div class="card m-b-20 card-inverse text-white" style="background-color: #333; border-color: #333;">
+                <div class="card m-b-20 card-inverse text-white {{ ($package->status == 1) ? 'bg-success' : 'bg-danger' }}">
                     <div class="card-body">
                         <h3 class="card-title">{{ $package->package_title }}</h3>
                         <h5 class="card-title">{{ $package->package_speed }}</h5>
@@ -67,7 +67,11 @@
                         <h1 class="card-title">৳{{ $package->package_price }}</h1>
                         <div class="btn-group package_btn_group">
                             <a data-toggle="modal" data-target="#EditModal{{ $package->id }}"><i class="fas fa-edit"></i></a>
-                            <a href="{{ route('package.delete',$package->id) }}" class="package_btn"><i class="fas fa-trash-alt"></i></a>
+                            @if ($package->status == 1)
+                                <a href="{{ route('package.inactive',$package->id) }}" class="package_btn">Inactive</i></a>
+                            @else
+                                <a href="{{ route('package.active',$package->id) }}" class="package_btn">Active</i></a>
+                            @endif
                         </div>
                     </div>
                 </div>
@@ -140,9 +144,13 @@
             // Display a success toast, with a title
             toastr.success('You Have Successfully update Package', 'Congratulation!')
         @endif
-        @if(Session::has('succsessdelete'))
+        @if(Session::has('succsessinactive'))
             // Display a success toast, with a title
-            toastr.success('You Have Successfully delete Package', 'Congratulation!')
+            toastr.success('You Have Successfully Inactive Package', 'Congratulation!')
+        @endif
+        @if(Session::has('succsessactive'))
+            // Display a success toast, with a title
+            toastr.success('You Have Successfully active Package', 'Congratulation!')
         @endif
 
 

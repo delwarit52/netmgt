@@ -2,135 +2,182 @@
 
 @section('content')
 <div class="container-fluid">
-    <div class="row bg-muted p-3 mb-3">
-        <div class="col-xl-12">
-            <div class="form-group row">
-                <div class="col-sm-6">
-                    <div class="input-daterange input-group" id="date-range">
-                        <input type="text" class="form-control" name="start_date" placeholder="Starting Date" id="start_date" value=""/>
-                        <span class="input-group-addon bg-primary b-0 text-white">to</span>
-                        <input type="text" class="form-control" name="end_date" placeholder="Ending Date" id="end_date" value=""/>
+    @if (Auth::user()->type != 3)    
+        <div class="row bg-muted p-3 mb-3">
+            <div class="col-xl-12">
+                <div class="form-group row">
+                    <div class="col-sm-6">
+                        <div class="input-daterange input-group" id="date-range">
+                            <input type="text" class="form-control" name="start_date" placeholder="Starting Date" id="start_date" value=""/>
+                            <span class="input-group-addon bg-primary b-0 text-white">to</span>
+                            <input type="text" class="form-control" name="end_date" placeholder="Ending Date" id="end_date" value=""/>
+                        </div>
                     </div>
-                </div>
-                <div class="col-sm-6">
-                    <button type="submit" id="form_btn" class="bg-primary text-white p-2" style="border:none; cursor:pointer; ">Submit</button>
-                </div>
-            </div>
-        </div>
-        <div class="col-xl-3 col-md-6">
-            <div class="card-box">
-                <h4 class="header-title mt-0 m-b-30">Total Customer</h4>
-                <div class="widget-chart-1">
-                    <div class="widget-chart-box-1">
-                        <i class="fas fa-user-tie" style="font-size: 50px"></i>
-                    </div>
-                    <div class="widget-detail-1 text-center">
-                        <h2 class="mb-0" id="customers"> {{ $customers }} </h2>
+                    <div class="col-sm-6">
+                        <button type="submit" id="form_btn" class="bg-primary text-white p-2" style="border:none; cursor:pointer; ">Submit</button>
                     </div>
                 </div>
             </div>
-        </div>
-        <!-- end col -->
-        <div class="col-xl-3 col-md-6">
-            <div class="card-box">
-                <h4 class="header-title mt-0 m-b-30">Total Package</h4>
-                <div class="widget-chart-1">
-                    <div class="widget-chart-box-1">
-                        <i class="fas fa-box" style="font-size: 50px"></i>
-                    </div>
-                    <div class="widget-detail-1 text-center">
-                        <h2 class="mb-0" id="packages"> {{ $packages }} </h2>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- end col -->
-        <div class="col-xl-3 col-md-6">
-            <div class="card-box">
-                <h4 class="header-title mt-0 m-b-30">Total Active Customer</h4>
-                <div class="widget-chart-1">
-                    <div class="widget-chart-box-1">
-                        <i class="fas fa-user-tie" style="font-size: 50px"></i>
-                    </div>
-                    <div class="widget-detail-1 text-center">
-                        <h2 class="mb-0" id="active_customers"> {{ $active_customers }} </h2>
+            <div class="col-xl-3 col-md-6">
+                <div class="card-box">
+                    <h4 class="header-title mt-0 m-b-30">Total Customer</h4>
+                    <div class="widget-chart-1">
+                        <div class="widget-chart-box-1">
+                            <i class="fas fa-user-tie" style="font-size: 50px"></i>
+                        </div>
+                        <div class="widget-detail-1 text-center">
+                            <h2 class="mb-0" id="customers"> {{ $customers }} </h2>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <!-- end col -->
-        <div class="col-xl-3 col-md-6">
-            <div class="card-box">
-                <h4 class="header-title mt-0 m-b-30">Total Inactive Customer</h4>
-                <div class="widget-chart-1">
-                    <div class="widget-chart-box-1">
-                        <i class="fas fa-user-tie" style="font-size: 50px"></i>
-                    </div>
-                    <div class="widget-detail-1 text-center">
-                        <h2 class="mb-0" id="inactive_customers"> {{ $inactive_customers }} </h2>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- end col -->
-        <div class="col-xl-3 col-md-6">
-            <div class="card-box">
-                <h4 class="header-title mt-0 m-b-30">Total Earn Amount</h4>
-                <div class="widget-chart-1">
-                    <div class="widget-chart-box-1">
-                        <span style="font-size: 50px"> ৳ </span>
-                    </div>
-                    <div class="widget-detail-1 text-center">
-                        <h2 class="mb-0" id="total_incomes"> {{ $total_incomes }} </h2>
+            <!-- end col -->
+            <div class="col-xl-3 col-md-6">
+                <div class="card-box">
+                    <h4 class="header-title mt-0 m-b-30">Total Package</h4>
+                    <div class="widget-chart-1">
+                        <div class="widget-chart-box-1">
+                            <i class="fas fa-box" style="font-size: 50px"></i>
+                        </div>
+                        <div class="widget-detail-1 text-center">
+                            <h2 class="mb-0" id="packages"> {{ $packages }} </h2>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <!-- end col -->
-        <div class="col-xl-3 col-md-6">
-            <div class="card-box">
-                <h4 class="header-title mt-0 m-b-30">Total Cost</h4>
-                <div class="widget-chart-1">
-                    <div class="widget-chart-box-1">
-                        <span style="font-size: 50px"> ৳ </span>
-                    </div>
-                    <div class="widget-detail-1 text-center">
-                        <h2 class="mb-0" id="total_cost"> {{ $total_cost }} </h2>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- end col -->
-        <div class="col-xl-3 col-md-6">
-            <div class="card-box">
-                <h4 class="header-title mt-0 m-b-30">Total Profit</h4>
-                <div class="widget-chart-1">
-                    <div class="widget-chart-box-1">
-                        <span style="font-size: 50px"> ৳ </span>
-                    </div>
-                    <div class="widget-detail-1 text-center">
-                        <h2 class="mb-0" id="profit"> {{ $total_incomes - $total_cost }} </h2>
+            <!-- end col -->
+            <div class="col-xl-3 col-md-6">
+                <div class="card-box">
+                    <h4 class="header-title mt-0 m-b-30">Total Active Customer</h4>
+                    <div class="widget-chart-1">
+                        <div class="widget-chart-box-1">
+                            <i class="fas fa-user-tie" style="font-size: 50px"></i>
+                        </div>
+                        <div class="widget-detail-1 text-center">
+                            <h2 class="mb-0" id="active_customers"> {{ $active_customers }} </h2>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <!-- end col -->
-        <div class="col-xl-3 col-md-6">
-            <div class="card-box">
-                <h4 class="header-title mt-0 m-b-30">Total Invoice</h4>
-                <div class="widget-chart-1">
-                    <div class="widget-chart-box-1">
-                        <i class="fas fa-file-invoice" style="font-size: 50px"></i>
-                    </div>
-                    <div class="widget-detail-1 text-center">
-                        <h2 class="mb-0" id="invoices"> {{ $invoices }} </h2>
+            <!-- end col -->
+            <div class="col-xl-3 col-md-6">
+                <div class="card-box">
+                    <h4 class="header-title mt-0 m-b-30">Total Inactive Customer</h4>
+                    <div class="widget-chart-1">
+                        <div class="widget-chart-box-1">
+                            <i class="fas fa-user-tie" style="font-size: 50px"></i>
+                        </div>
+                        <div class="widget-detail-1 text-center">
+                            <h2 class="mb-0" id="inactive_customers"> {{ $inactive_customers }} </h2>
+                        </div>
                     </div>
                 </div>
             </div>
+            <!-- end col -->
+            <div class="col-xl-3 col-md-6">
+                <div class="card-box">
+                    <h4 class="header-title mt-0 m-b-30">Total Earn Amount</h4>
+                    <div class="widget-chart-1">
+                        <div class="widget-chart-box-1">
+                            <span style="font-size: 50px"> ৳ </span>
+                        </div>
+                        <div class="widget-detail-1 text-center">
+                            <h2 class="mb-0" id="total_incomes"> {{ $total_incomes }} </h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- end col -->
+            <div class="col-xl-3 col-md-6">
+                <div class="card-box">
+                    <h4 class="header-title mt-0 m-b-30">Total Cost</h4>
+                    <div class="widget-chart-1">
+                        <div class="widget-chart-box-1">
+                            <span style="font-size: 50px"> ৳ </span>
+                        </div>
+                        <div class="widget-detail-1 text-center">
+                            <h2 class="mb-0" id="total_cost"> {{ $total_cost }} </h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- end col -->
+            <div class="col-xl-3 col-md-6">
+                <div class="card-box">
+                    <h4 class="header-title mt-0 m-b-30">Total Profit</h4>
+                    <div class="widget-chart-1">
+                        <div class="widget-chart-box-1">
+                            <span style="font-size: 50px"> ৳ </span>
+                        </div>
+                        <div class="widget-detail-1 text-center">
+                            <h2 class="mb-0" id="profit"> {{ $total_incomes - $total_cost }} </h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- end col -->
+            <div class="col-xl-3 col-md-6">
+                <div class="card-box">
+                    <h4 class="header-title mt-0 m-b-30">Total Invoice</h4>
+                    <div class="widget-chart-1">
+                        <div class="widget-chart-box-1">
+                            <i class="fas fa-file-invoice" style="font-size: 50px"></i>
+                        </div>
+                        <div class="widget-detail-1 text-center">
+                            <h2 class="mb-0" id="invoices"> {{ $invoices }} </h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- end col -->
         </div>
-        <!-- end col -->
-    </div>
-    <!-- end row -->
+        <!-- end row -->
+    @endif
+    
+    @if (Auth::user()->type == 3)
+        {{-- Start Customer Dashboard  --}}
+        <div class="row bg-muted p-3 mb-3">
+            <div class="col-xl-12">
+                {{ usernotification() }}
+            </div>
+                {{-- Data tables For Admin Start --}}
+                <div class="col-12">
+                    <div class="card-box table-responsive">
+                        <h1 class="m-t-0 header-title" style="font-size:40px; text-align:center; margin-bottom:50px !important;"><b>List Of Invioce</b></h1>
+                        <table id="datatable-buttons" class="table table-striped table-bordered" cellspacing="0" width="100%">
+                            <thead>
+                                <tr>
+                                    <th class="align-middle text-center">Sl No.</th>
+                                    <th class="align-middle text-center">Invioce Id</th>
+                                    <th class="align-middle text-center">Invioce Date</th>
+                                    <th class="align-middle text-center">Package Name</th>
+                                    <th class="align-middle text-center">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($total_invioce as $invioce)
+                                    <tr>
+                                        <td>{{ $loop->index + 1 }}</td>
+                                        <td>{{ $invioce->invoice_no }}</td>
+                                        <td>{{ $invioce->created_at }}</td>
+                                        <td>{{ $invioce->package_title }}</td>
+                                        <td>
+                                            <a href="{{ route('singleinvioce',$invioce->id) }}" class="btn btn-success btn-sm rounded-0" target="_blank">
+                                                <i class="fas fa-eye"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                {{-- Data tables For Admin Start --}}
+        </div>
+        <!-- end row -->
+    @endif
+
+
 </div> <!-- container -->
 @endsection
 
