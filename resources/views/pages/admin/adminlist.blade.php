@@ -131,7 +131,10 @@
                             <th class="align-middle text-center">Name</th>
                             <th class="align-middle text-center">Email</th>
                             <th class="align-middle text-center">Phone</th>
-                            <th class="align-middle text-center">Profit Percentage</th>
+                            @if (Auth::user()->type != 0)
+                                <th class="align-middle text-center">Profit Percentage</th>    
+                            @endif
+                            
                             @if (Auth::user()->type == 0)
                                 <th class="align-middle text-center">Action</th>
                             @endif
@@ -141,12 +144,15 @@
                     <tbody>
                         @if (count($users)>0)
                             @foreach($users as $user)
-                                @if ($user->id != Auth::id() && $user->type != 0)
+                                @if ($user->id != Auth::id() && $user->type == 1 )
                                     <tr>
                                         <td class="align-middle text-center">{{ $user->name }}</td>
                                         <td class="align-middle text-center">{{ $user->email }}</td>
                                         <td class="align-middle text-center">{{ $user->phone }}</td>
-                                        <td class="align-middle text-center">{{ $user->admin->profit_percentage }}%</td>
+                                        @if (Auth::user()->type != 0)
+                                        <td class="align-middle text-center">{{ $user->admin->profit_percentage }}%</td>    
+                                        @endif
+                                        
                                         @if (Auth::user()->type == 0)
                                         <td class="align-middle text-center">
                                             <a href="{{ route('admin.delete',$user->id) }}" class="btn btn-danger btn-sm rounded-0" >

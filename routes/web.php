@@ -68,6 +68,7 @@ Route::get('/customer/inactivelist', [AdminCustomerController::class, 'customeri
 Route::post('/customer/register', [AdminCustomerController::class, 'customerregister'])->name('customer.register');
 Route::get('/customer/active/{id}', [AdminCustomerController::class, 'customeractive'])->name('customer.active');
 Route::get('/customer/inactive/{id}', [AdminCustomerController::class, 'customerinactive'])->name('customer.inactive');
+Route::post('/customer/change/package', [AdminCustomerController::class, 'changepackage'])->name('customer.change.package');
 Route::get('/customer/delete/{id}', [AdminCustomerController::class, 'customerdelete'])->name('customer.delete');
 
 // Customer Route 
