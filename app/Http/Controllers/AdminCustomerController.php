@@ -15,6 +15,10 @@ use Illuminate\Support\Facades\Hash;
 
 class AdminCustomerController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('customerrules');
+    }
 
     public function customerall(){
         return view('pages.admin.customerlistall',[
@@ -53,20 +57,21 @@ class AdminCustomerController extends Controller
         $customer = CustomerModel::where('id', $request->id)->first();
         $package = PackageModel::where('id', $customer->package_id)->first();
 
-        InvioceModel::create([
-            'invoice_no' => "ASF-" . time(),
-            'package_title' => $package->package_title,
-            'package_price' => $package->package_price,
-            'created_by' => Auth::id(),
-            'cust_id' => $request->id,
-        ]);
-
         $user_id = User::create([
             'name' => $request->name,
             'phone' => $request->phone,
             'net_id' => $request->net_id,
             'password' => Hash::make($request->password),
         ]);
+
+        InvioceModel::create([
+            'invoice_no' => "ASF-" . time(),
+            'package_title' => $package->package_title,
+            'package_price' => $package->package_price,
+            'created_by' => Auth::id(),
+            'cust_id' => $user_id->id,
+        ]);
+
 
         CustomerModel::where('id' , $request->id)->update([
             'active_date' => Carbon::now(),

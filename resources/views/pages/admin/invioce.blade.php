@@ -1,7 +1,6 @@
 @extends('layouts.app')
 @section('content')
 <div class="card-box">
-
     {{-- Data tables For Admin Start --}}
     <div class="row">
         <div class="col-12">
@@ -39,7 +38,5 @@
         </div>
     </div>
     {{-- Data tables For Admin Start --}}
-
-
 </div>
 @endsection

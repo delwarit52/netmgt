@@ -11,7 +11,7 @@ class CustomerController extends Controller
 {
     public function index(){
         return view('pages.customer.customerform',[
-            'packages' => PackageModel::all(),
+            'packages' => PackageModel::where('status',1)->get(),
         ]);
     }
 

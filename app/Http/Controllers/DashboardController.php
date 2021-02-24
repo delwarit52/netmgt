@@ -7,13 +7,27 @@ use App\Models\InvioceModel;
 use App\Models\PackageModel;
 use Illuminate\Http\Request;
 use App\Models\CustomerModel;
+use Illuminate\Support\Facades\Auth;
 
 class DashboardController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('customerrules' ,['except' => ['index']]);
+    }
+
+
     
     
+
     public function index()
     {
+        if(Auth::user()->type == 3){
+            return view('dashboard', [
+                'total_invioce' => InvioceModel::where('cust_id', Auth::id())->get(),
+            ]);
+        }
         return view('dashboard', [
             'customers' => CustomerModel::count(),
             'packages' => PackageModel::count(),
