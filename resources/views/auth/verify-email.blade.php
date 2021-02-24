@@ -26,38 +26,21 @@
             <div class="col-xl-6">
                 <div class="card-box">
 
-                    <h4 class="header-title m-t-0 m-b-30">Login Here</h4>
+                    <h4 class="header-title m-t-0 m-b-30">You must verify your email address, please check your email for a verification link</h4>
 
-                    <form method="POST" action="{{ route('login') }}" class="form-horizontal" role="form" data-parsley-validate novalidate>
+                    @if (session('status'))
+                        <div class="alert alert-success" role="alert">
+                            {{ session('status') }}
+                        </div>
+                    @endif
+
+                    <form method="POST" action="{{ route('verification.send') }}" class="form-horizontal" role="form" data-parsley-validate novalidate>
                         @csrf
                         <div class="form-group">
-                            <label for="emailAddress">Email address*</label>
-                            <input type="text" name="email" parsley-trigger="change" 
-                                   placeholder="Enter email" class="form-control" id="emailAddress">
+                            <input type="submit" name="resend"  class="btn btn-block" value="Resend">
                         </div>
-                        @error('email')
-                            <div class="alert alert-danger">{{ $message }}</div>
-                        @enderror
-                        <div class="form-group">
-                            <label for="pass1">Password*</label>
-                            <input id="pass1" name="password" type="password" placeholder="Password" 
-                                class="form-control" autocomplete="new-password">
-                        </div>
-                        @error('password')
-                            <div class="alert alert-danger">{{ $message }}</div>
-                        @enderror
-
-                        <div class="form-group">
-                            <div class="d-flex justify-content-end">
-                                <button type="submit" class="btn btn-primary waves-effect waves-light">
-                                    Login
-                                </button>
-                            </div>
-                        </div>
+                        
                     </form>
-                    <div class="offset-sm-12 col-md-12 d-flex justify-content-end">
-                        <a href="{{ route('password.request') }}" class="">forget Password?</a>
-                    </div>
                 </div>
             </div><!-- end col -->
         </div>
