@@ -45,6 +45,7 @@
                                 <td class="align-middle text-center">
                                     <a class="btn btn-sm btn-primary" data-toggle="modal" data-target="#ActiveModel{{ $customer->id }}">Active</a>
                                     <button class="btn btn-sm btn-primary" data-toggle="modal" data-target="#view{{ $customer->id }}">View</button>
+                                    <button class="btn btn-sm btn-primary" data-toggle="modal" data-target="#changepackage{{ $customer->id }}">Change Package</button>
                                 </td>
                             </tr>
                             <!-- Edit modal content -->
@@ -193,6 +194,62 @@
                                                 </div>
                                                 
                                             </div>
+                                        </div>
+                                    </div><!-- /.modal-content -->
+                                </div><!-- /.modal-dialog -->
+                            </div>
+                            <!-- /.modal -->
+
+                            {{-- Change Package Modal  --}}
+                            <div id="changepackage{{ $customer->id }}" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-lg">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h4 class="modal-title" id="myModalLabel">User Registration</h4>
+                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form method="POST" action="{{ route('customer.change.package') }}">
+                                                @csrf
+                                                <input type="hidden" value="{{ $customer->id }}" name="">
+                                                <div class="row">
+                                                    <div class="col col-sm-12 col-md-4 selection-wrapper">
+                                                        @php
+                                                            $data = customer_package($customer->package_id)   
+                                                        @endphp
+                                                        <label for="selected-item-{{ $data->id }}" class="card selected-label">
+                                                            <input type="radio" name="package_id" id="selected-item-{{ $data->id }}" value="{{ $data->id }}" checked>
+                                                            <span class="icon"></span>
+                                                            <div class="selected-content bg-success">
+                                                                <h3 class="card-title">{{ $data->package_title }}</h3>
+                                                                <h5 class="card-title">{{ $data->package_speed }}</h5>
+                                                                <p class="card-text">{{ $data->package_discription }}</p>
+                                                                <h1 class="card-title">৳{{ $data->package_price }}</h1>
+                                                            </div>
+                                                        </label>
+                                                    </div>
+
+                                                    @foreach (get_allpackage() as $package)
+                                                        @if ($data->id != $package->id)
+                                                            <div class="col col-sm-12 col-md-4 selection-wrapper">
+                                                                <label for="selected-item-{{ $package->id }}" class="card selected-label">
+                                                                    <input type="radio" name="package_id" id="selected-item-{{ $package->id }}" value="{{ $package->id }}">
+                                                                    <span class="icon"></span>
+                                                                    <div class="selected-content">
+                                                                        <h3 class="card-title">{{ $package->package_title }}</h3>
+                                                                        <h5 class="card-title">{{ $package->package_speed }}</h5>
+                                                                        <p class="card-text">{{ $package->package_discription }}</p>
+                                                                        <h1 class="card-title">৳{{ $package->package_price }}</h1>
+                                                                    </div>
+                                                                </label>
+                                                            </div>
+                                                        @endif
+                                                    @endforeach
+                                                </div>
+                                                <div class="d-flex justify-content-center">
+                                                    <button type="submit" class="btn btn-primary">Change</button>
+                                                </div>
+                                            </form>
                                         </div>
                                     </div><!-- /.modal-content -->
                                 </div><!-- /.modal-dialog -->

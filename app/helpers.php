@@ -51,5 +51,10 @@ function newusernotification()
     return $notifications;
 }
 
+function get_allpackage()
+{
+    // return $id;
+    return App\Models\PackageModel::all();
+}
 
 
