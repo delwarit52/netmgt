@@ -49,11 +49,19 @@ function newusernotification()
     return $notifications;
 }
 
+
 function usernotification(){
     $datas = App\Models\CustomerModel::where('user_id',Auth::id())->first();
     if (((Carbon::now()->diffInHours($datas->active_date)) / 24) > 25 && ((Carbon::now()->diffInHours($datas->active_date)) / 24) < 30 ) {
        return 'Your package will expire withing '. intval(30 - ((Carbon::now()->diffInHours($datas->active_date)) / 24));
     }
+
+function get_allpackage()
+{
+    // return $id;
+    return App\Models\PackageModel::all();
+}
+
 
     return 'Your package expired '. intval((Carbon::now()->diffInHours($data->active_date)) / 24);
 }

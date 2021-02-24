@@ -36,6 +36,7 @@ Route::get('/', function () {
 //     return view('dashboard');
 // })->middleware(['auth'])->name('dashboard');
 
+
 Route::group(['middleware' => 'auth'], function () {
 
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
@@ -84,6 +85,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/invioce', [InvioceModelController::class, 'index'])->name('invioce');
     Route::get('/single/invioce/{id}', [InvioceModelController::class, 'singleinvioce'])->name('singleinvioce');
 });
+
+
 
 // Customer Route 
 Route::get('/registration/form', [CustomerController::class, 'index'])->name('registration.form');

@@ -65,7 +65,7 @@ class AdminCustomerController extends Controller
         ]);
 
         InvioceModel::create([
-            'invoice_no' => "ASF-" . $customer->id,
+            'invoice_no' => "ASF-" . time(),
             'package_title' => $package->package_title,
             'package_price' => $package->package_price,
             'created_by' => Auth::id(),
@@ -95,10 +95,19 @@ class AdminCustomerController extends Controller
 
     public function customerinactive($id)
     {
+        $cust = CustomerModel::where('id',$id)->first();
+
+        $package = PackageModel::where('id', $cust->package_id)->first();
+        
         CustomerModel::where('id',$id)->update([
             'status' => 1,
         ]);
-        InvioceModel::where('cust_id', $id)->update([
+        InvioceModel::create([
+            'invoice_no' => "ASF-" . time(),
+            'package_title' => $package->package_title,
+            'package_price' => $package->package_price,
+            'created_by' => Auth::id(),
+            'cust_id' => $id,
             'status' => 1,
         ]);
         return back()->with('succsess', 'add successfully');
@@ -108,6 +117,14 @@ class AdminCustomerController extends Controller
     {
         CustomerModel::where('id', $id)->delete();
         return back()->with('succsess', 'Delete successfully');
+    }
+
+    public function changepackage(Request $request)
+    {
+        CustomerModel::where('id' , $request->cust_id)->update([
+            'package_id' => $request->package_id,
+        ]);
+        return back()->with('succsess', 'Change successfully');
     }
 
 }

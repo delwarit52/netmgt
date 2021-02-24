@@ -11,10 +11,15 @@ use Illuminate\Support\Facades\Auth;
 
 class DashboardController extends Controller
 {
+
     public function __construct()
     {
         $this->middleware('customerrules' ,['except' => ['index']]);
     }
+
+
+    
+    
 
     public function index()
     {
