@@ -26,18 +26,28 @@
             <div class="col-xl-6">
                 <div class="card-box">
 
-                    <h4 class="header-title m-t-0 m-b-30">Login Here</h4>
+                    <h4 class="header-title m-t-0 m-b-30">Password Reset</h4>
 
-                    <form method="POST" action="{{ route('login') }}" class="form-horizontal" role="form" data-parsley-validate novalidate>
+                    @if (session('status'))
+                        <div class="alert alert-success" role="alert">
+                            {{ session('status') }}
+                        </div>
+                    @endif
+
+                    <form method="POST" action="{{ route('password.update') }}" class="form-horizontal" role="form" data-parsley-validate novalidate>
                         @csrf
+
+                        <input type="hidden" name="token" value="{{ $request->route('token') }}">
+
                         <div class="form-group">
                             <label for="emailAddress">Email address*</label>
-                            <input type="text" name="email" parsley-trigger="change" 
-                                   placeholder="Enter email" class="form-control" id="emailAddress">
+                            <input type="email" name="email" parsley-trigger="change" 
+                                   value="{{ $request->email }}" class="form-control" id="emailAddress">
                         </div>
                         @error('email')
                             <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
+
                         <div class="form-group">
                             <label for="pass1">Password*</label>
                             <input id="pass1" name="password" type="password" placeholder="Password" 
@@ -46,18 +56,24 @@
                         @error('password')
                             <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
+                        <div class="form-group">
+                            <label for="passWord2">Confirm Password *</label>
+                            <input data-parsley-equalto="#pass1" name="password_confirmation" type="password" 
+                                placeholder="Confirm Password" class="form-control" id="passWord2" autocomplete="new-password">
+                        </div>
 
                         <div class="form-group">
-                            <div class="d-flex justify-content-end">
+                            <div class="offset-sm-4 col-sm-8">
                                 <button type="submit" class="btn btn-primary waves-effect waves-light">
-                                    Login
+                                    Update
+                                </button>
+                                <button type="reset"
+                                        class="btn btn-secondary waves-effect waves-light m-l-5">
+                                    Cancel
                                 </button>
                             </div>
                         </div>
                     </form>
-                    <div class="offset-sm-12 col-md-12 d-flex justify-content-end">
-                        <a href="{{ route('password.request') }}" class="">forget Password?</a>
-                    </div>
                 </div>
             </div><!-- end col -->
         </div>

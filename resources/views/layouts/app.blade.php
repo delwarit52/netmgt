@@ -242,7 +242,9 @@
                                     <div class="user-desc">
                                         <span class="name">{{ $user['username'] }}</span>
                                         <span class="desc">{{ $user['message'] }}</span>
-                                        <span class="time">{{ $user['ago'] }}</span>
+                                        <span class="time">
+                                            {{ Carbon\Carbon::parse($user['ago'])->diffForHumans() }}
+                                        </span>
                                     </div>
                                 </a>
                             </li>
