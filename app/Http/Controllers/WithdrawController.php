@@ -32,6 +32,7 @@ class WithdrawController extends Controller
         // return $request->all();
         $this->validation();
         if (Hash::check($request->password, Auth::user()->password)) {
+            // return $request->all();
             WithdrawModel::create($this->validation());
             return redirect()->route('withdraw')->with('succsess', 'add successfully');
         }
@@ -45,6 +46,7 @@ class WithdrawController extends Controller
         
         $this->validation();
         if (Hash::check($request->password, Auth::user()->password)) {
+            
             
             WithdrawModel::where("user_id", $request->id)->update(
                 [

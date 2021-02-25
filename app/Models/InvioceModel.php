@@ -12,6 +12,6 @@ class InvioceModel extends Model
 
     public function customer()
     {
-        return $this->hasOne(CustomerModel::class, 'user_id', 'cust_id');
+        return $this->hasOne(CustomerModel::class, 'id', 'cust_id');
     }
 }

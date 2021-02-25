@@ -55,8 +55,9 @@
                             </div>
                         </div>
                     </form>
-                    <div class="offset-sm-12 col-md-12 d-flex justify-content-end">
+                    <div class="offset-sm-12 col-md-12 d-flex justify-content-between">
                         <a href="{{ route('password.request') }}" class="">forget Password?</a>
+                        <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 underline">Register</a>
                     </div>
                 </div>
             </div><!-- end col -->

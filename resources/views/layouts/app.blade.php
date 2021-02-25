@@ -112,13 +112,19 @@
                     <!-- User -->
                     <div class="user-box">
                         <div class="user-img">
-                            <img src="assets/images/users/avatar-1.jpg" alt="user-img" title="Mat Helme" class="rounded-circle img-thumbnail img-responsive">
+                            @if(Auth::user()->profile_img == null)
+                                <img src="{{ asset('assets/images/users/avatar-1.jpg') }}" alt="user-img" title="Mat Helme" class="rounded-circle img-thumbnail img-responsive">
+                            @else
+                                <img src="{{ asset('storage/'.Auth::user()->profile_img) }}" alt="user-img" title="Mat Helme" class="rounded-circle img-thumbnail img-responsive">
+                            @endif
+                            
+                            
                             <div class="user-status offline"><i class="mdi mdi-adjust"></i></div>
                         </div>
                         <h5><a href="#">{{ Auth::user()->name }}</a> </h5>
                         <ul class="list-inline">
                             <li class="list-inline-item">
-                                <a href="#" >
+                                <a href="{{ route('dashboard.profile') }}" >
                                     <i class="mdi mdi-settings"></i>
                                 </a>
                             </li>
@@ -225,33 +231,36 @@
 
 
             <!-- Right Sidebar -->
-            <div class="side-bar right-bar">
-                <a href="javascript:void(0);" class="right-bar-toggle">
-                    <i class="mdi mdi-close-circle-outline"></i>
-                </a>
-                <h4 class="">Notifications</h4>
-                <div class="notification-list nicescroll">
-                    <ul class="list-group list-no-border user-list">
-                        @foreach (newusernotification() as $user)
-                            <li class="list-group-item">
-                                {{-- <a href="{{ route('customer.newlist') }}" class="user-list-item"> --}}
-                                <a href="{{ ($user['messagetype'] == 'newuser') ? route('customer.newlist') : route('customer.inactivelist') }}" class="user-list-item">
-                                    <div class="icon bg-info">
-                                        <i class="{{ ($user['messagetype'] == 'newuser') ? 'mdi mdi-account' : 'fas fa-file-invoice' }}"></i>
-                                    </div>
-                                    <div class="user-desc">
-                                        <span class="name">{{ $user['username'] }}</span>
-                                        <span class="desc">{{ $user['message'] }}</span>
-                                        <span class="time">
-                                            {{ Carbon\Carbon::parse($user['ago'])->diffForHumans() }}
-                                        </span>
-                                    </div>
-                                </a>
-                            </li>
-                        @endforeach
-                    </ul>
-                </div>
-            </div>
+            @if (Auth::user()->type != 3)
+                <div class="side-bar right-bar">
+                    <a href="javascript:void(0);" class="right-bar-toggle">
+                        <i class="mdi mdi-close-circle-outline"></i>
+                    </a>
+                    <h4 class="">Notifications</h4>
+                    <div class="notification-list nicescroll">
+                        <ul class="list-group list-no-border user-list">
+                            @foreach (newusernotification() as $user)
+                                <li class="list-group-item">
+                                    {{-- <a href="{{ route('customer.newlist') }}" class="user-list-item"> --}}
+                                    <a href="{{ ($user['messagetype'] == 'newuser') ? route('customer.newlist') : route('customer.inactivelist') }}" class="user-list-item">
+                                        <div class="icon bg-info">
+                                            <i class="{{ ($user['messagetype'] == 'newuser') ? 'mdi mdi-account' : 'fas fa-file-invoice' }}"></i>
+                                        </div>
+                                        <div class="user-desc">
+                                            <span class="name">{{ $user['username'] }}</span>
+                                            <span class="desc">{{ $user['message'] }}</span>
+                                            <span class="time">
+                                                {{ Carbon\Carbon::parse($user['ago'])->diffForHumans() }}
+                                            </span>
+                                        </div>
+                                    </a>
+                                </li>
+                            @endforeach
+                        </ul>
+                    </div>
+                </div>    
+            @endif
+            
             <!-- /Right-bar -->
 
         </div>
