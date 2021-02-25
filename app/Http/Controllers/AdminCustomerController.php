@@ -64,6 +64,12 @@ class AdminCustomerController extends Controller
             'password' => Hash::make($request->password),
         ]);
 
+        $cust_id = CustomerModel::where('id' , $request->id)->update([
+            'active_date' => Carbon::now(),
+            'user_id' => $user_id->id,
+            'status' => 1,
+        ]);
+
         InvioceModel::create([
             'invoice_no' => "ASF-" . time(),
             'package_title' => $package->package_title,
@@ -73,11 +79,7 @@ class AdminCustomerController extends Controller
         ]);
 
 
-        CustomerModel::where('id' , $request->id)->update([
-            'active_date' => Carbon::now(),
-            'user_id' => $user_id->id,
-            'status' => 1,
-        ]);
+        
 
         return redirect()->route('customer.activelist')->with('succsess', 'add successfully');
     }
@@ -121,6 +123,7 @@ class AdminCustomerController extends Controller
 
     public function changepackage(Request $request)
     {
+        
         CustomerModel::where('id' , $request->cust_id)->update([
             'package_id' => $request->package_id,
         ]);

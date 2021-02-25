@@ -131,9 +131,8 @@
                             <th class="align-middle text-center">Name</th>
                             <th class="align-middle text-center">Email</th>
                             <th class="align-middle text-center">Phone</th>
-                            @if (Auth::user()->type != 0)
-                                <th class="align-middle text-center">Profit Percentage</th>    
-                            @endif
+                            <th class="align-middle text-center">Profit Percentage</th>  
+                           
                             
                             @if (Auth::user()->type == 0)
                                 <th class="align-middle text-center">Action</th>
@@ -149,9 +148,9 @@
                                         <td class="align-middle text-center">{{ $user->name }}</td>
                                         <td class="align-middle text-center">{{ $user->email }}</td>
                                         <td class="align-middle text-center">{{ $user->phone }}</td>
-                                        @if (Auth::user()->type != 0)
+                                        
                                         <td class="align-middle text-center">{{ $user->admin->profit_percentage }}%</td>    
-                                        @endif
+                                        
                                         
                                         @if (Auth::user()->type == 0)
                                         <td class="align-middle text-center">
@@ -184,7 +183,7 @@
                                                                         <div class="form-group">
                                                                             <label for="userName">Profit Percentage(%)*</label>
                                                                             <input type="number" name="profit_percentage" parsley-trigger="change" required
-                                                                                   placeholder="Enter Profit Percentage" class="form-control" id="" value="{{ $user->profit_percentage }}">
+                                                                                   placeholder="Enter Profit Percentage" class="form-control" id="" value="{{ $user->admin->profit_percentage }}">
                                                                             @error('profit_percentage')
                                                                                 <div class="alert alert-danger">{{ $message }}</div>
                                                                             @enderror

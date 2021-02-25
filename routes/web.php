@@ -25,7 +25,7 @@ use Illuminate\Support\Facades\Auth;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.login');
 });
 
 // User Dashboard 
@@ -35,6 +35,8 @@ Route::get('/', function () {
 //     // return view('welcome');
 //     return view('dashboard');
 // })->middleware(['auth'])->name('dashboard');
+
+Route::get('/', [DashboardController::class, 'welcome'])->name('welcome');
 
 
 Route::group(['middleware' => 'auth'], function () {
@@ -75,6 +77,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/customer/active/{id}', [AdminCustomerController::class, 'customeractive'])->name('customer.active');
     Route::get('/customer/inactive/{id}', [AdminCustomerController::class, 'customerinactive'])->name('customer.inactive');
     Route::get('/customer/delete/{id}', [AdminCustomerController::class, 'customerdelete'])->name('customer.delete');
+    Route::post('/customer/change/package', [AdminCustomerController::class, 'changepackage'])->name('customer.change.package');
 
     // Withdraw Route 
     Route::get('/dashboard/withdraw', [WithdrawController::class, 'index'])->name('withdraw');

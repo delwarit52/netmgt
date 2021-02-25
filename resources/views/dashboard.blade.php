@@ -181,6 +181,7 @@
 </div> <!-- container -->
 @endsection
 
+
 @section('section_script')
      <script>
             // Date Picker
