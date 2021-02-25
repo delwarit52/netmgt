@@ -70,14 +70,12 @@
 
                         <div class="form-group text-right m-b-0">
                             <button class="btn btn-primary waves-effect waves-light" type="submit">
-                                Submit
-                            </button>
-                            <button type="reset" class="btn btn-secondary waves-effect waves-light m-l-5">
-                                Cancel
+                                Register
                             </button>
                         </div>
-
                     </form>
+                    <a href="{{ route('login') }}" class="text-sm text-gray-700 underline">Log in</a>
+
                 </div>
             </div><!-- end col -->
         </div>

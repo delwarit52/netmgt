@@ -137,8 +137,8 @@
                                                     @php
                                                         $data = customer_package($customer->package_id)   
                                                     @endphp
-                                                    <div class="card m-b-20 card-inverse text-white" style="background-color: #333; border-color: #333;">
-                                                        <div class="card-body">
+                                                    <div class="card m-b-20 card-inverse text-white">
+                                                        <div class="card-body bg-success">
                                                             <h3 class="card-title">{{ $data->package_title }}</h3>
                                                             <h5 class="card-title">{{ $data->package_speed }}</h5>
                                                             <p class="card-text">{{ $data->package_discription }}</p>
@@ -183,9 +183,7 @@
                                                 <div class="col col-sm-12 col-md-6">
                                                     <div class="form-group">
                                                         <label>Client Route MAC :</label>
-                                                        <textarea class="form-control h-100 w-100" rows="5" cols="50" readonly>
-                                                            {{ $customer->address }}
-                                                        </textarea>
+                                                        <textarea class="form-control h-100 w-100" rows="5" cols="50" readonly>{{ $customer->address }}</textarea>
                                                     </div>
                                                     <div class="form-group">
                                                         <label>User Id*</label>
@@ -211,7 +209,7 @@
                                         <div class="modal-body">
                                             <form method="POST" action="{{ route('customer.change.package') }}">
                                                 @csrf
-                                                <input type="hidden" value="{{ $customer->id }}" name="">
+                                                <input type="hidden" value="{{ $customer->id }}" name="cust_id">
                                                 <div class="row">
                                                     <div class="col col-sm-12 col-md-4 selection-wrapper">
                                                         @php

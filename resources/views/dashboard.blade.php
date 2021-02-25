@@ -132,6 +132,76 @@
             <!-- end col -->
         </div>
         <!-- end row -->
+        <div class="row">
+            <div class="col-12">
+                <div class="card-box">
+                    <h4 class="header-title mt-0 m-b-30">Active Customer</h4>
+
+                    <table id="datatable-active" class="table table-striped table-bordered" cellspacing="0" width="100%">
+                    <thead>
+                        <tr>
+                            <th class="align-middle text-center">Sl.</th>
+                            <th class="align-middle text-center">Name</th>
+                            <th class="align-middle text-center">Email</th>
+                            <th class="align-middle text-center">Phone</th>
+                            <th class="align-middle text-center">Net ID</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach($activecustomers as $customer)
+                            <tr>
+                                <td class="align-middle text-center">{{ ++$loop->index }}</td>
+                                <td class="align-middle text-center">{{ $customer->name }}</td>
+                                <td class="align-middle text-center">{{ $customer->email }}</td>
+                                <td class="align-middle text-center">{{ $customer->phone }}</td>
+                                <td class="align-middle text-center">{{ get_customer_netid($customer->user_id)->net_id }}</td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+                </div>
+            </div><!-- end col -->
+
+            <div class="col-12">
+                <div class="card-box">
+                    <div class="mt-0 m-b-30 d-flex justify-content-between">
+                        <h4 class="header-title">Inactive Customer</h4>
+                        <a href="{{ route('sendmessage') }}" class="btn btn-primary">Send Reactive Message To All</a>
+                    </div>
+
+                    <div class="table-responsive">
+                        <table id="datatable-inactive" class="table table-striped table-bordered" cellspacing="0" width="100%">
+                    <thead>
+                        <tr>
+                            <th class="align-middle text-center">Sl.</th>
+                            <th class="align-middle text-center">Name</th>
+                            <th class="align-middle text-center">Email</th>
+                            <th class="align-middle text-center">Phone</th>
+                            <th class="align-middle text-center">Net ID</th>
+                            <th class="align-middle text-center">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach($inactivecustomers as $customer)
+                            <tr>
+                                <td class="align-middle text-center">{{ ++$loop->index }}</td>
+                                <td class="align-middle text-center">{{ $customer->name }}</td>
+                                <td class="align-middle text-center">{{ $customer->email }}</td>
+                                <td class="align-middle text-center">{{ $customer->phone }}</td>
+                                <td class="align-middle text-center">{{ get_customer_netid($customer->user_id)->net_id }}</td>
+                                <td class="align-middle text-center">
+                                    <a href="{{ route('sendmessage.single',$customer->id) }}" class="btn btn-primary">Send Reactive Message</a>
+                                </td>
+                            </tr>
+                            
+                        @endforeach
+                    </tbody>
+                </table>
+                    </div>
+                </div>
+            </div><!-- end col -->
+        </div>
+        <!-- end row -->
     @endif
     
     @if (Auth::user()->type == 3)

@@ -46,32 +46,18 @@
                         @error('password')
                             <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
-                        
-
-                        <div class="form-group d-flex">
-                            <div class="offset-sm-12 col-md-6">
-                                <div class="checkbox">
-                                    <input id="remember-2" type="checkbox">
-                                    <label for="remember-2"> Remember me </label>
-                                </div>
-                            </div>
-                        </div>
                         <div class="form-group">
-                            <div class="offset-sm-4 col-sm-8">
+                            <div class="d-flex justify-content-end">
                                 <button type="submit" class="btn btn-primary waves-effect waves-light">
                                     Login
                                 </button>
                             </div>
                         </div>
                     </form>
-                    {{-- <div class="offset-sm-12 col-md-12 d-flex justify-content-end">
+                    <div class="offset-sm-12 col-md-12 d-flex justify-content-between">
                         <a href="{{ route('password.request') }}" class="">forget Password?</a>
-                    </div> --}}
-                    {{-- @if (Route::has('password.request'))
-                        <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('password.request') }}">
-                            {{ __('Forgot your password?') }}
-                        </a>
-                    @endif --}}
+                        <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 underline">Register</a>
+                    </div>
                 </div>
             </div><!-- end col -->
         </div>
