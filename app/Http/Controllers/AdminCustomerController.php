@@ -63,7 +63,9 @@ class AdminCustomerController extends Controller
             'password' => Hash::make($request->password),
         ]);
 
+
         CustomerModel::where('id', $request->id)->update([
+
             'active_date' => Carbon::now(),
             'user_id' => $user_id->id,
             'status' => 1,
@@ -86,6 +88,7 @@ class AdminCustomerController extends Controller
         $url = "http://api.greenweb.com.bd/api.php?json";
 
 
+
         $data = array(
             'to' => "$to",
             'message' => "$message",
@@ -104,6 +107,7 @@ class AdminCustomerController extends Controller
         // echo curl_error($ch);
 
         //End Mobile Sms Notification
+
 
         return redirect()->route('customer.activelist')->with('succsess', 'add successfully');
     }
@@ -174,6 +178,7 @@ class AdminCustomerController extends Controller
 
     public function changepackage(Request $request)
     {
+        
         CustomerModel::where('id' , $request->cust_id)->update([
             'package_id' => $request->package_id,
         ]);

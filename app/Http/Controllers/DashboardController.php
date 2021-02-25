@@ -14,11 +14,26 @@ class DashboardController extends Controller
 
     public function __construct()
     {
-        $this->middleware('customerrules' ,['except' => ['index']]);
+        $this->middleware('customerrules' ,['except' => ['index', 'welcome']]);
     }
+
+
+
+    public function welcome(){
+        if (!Auth::check())
+        {
+            return view('auth.login');
+        }
+        $this->index();
+        return redirect()->route('dashboard');
+    }
+    
+  
+
 
     public function index()
     {
+        
         if(Auth::user()->type == 3){
             return view('dashboard', [
                 'total_invioce' => InvioceModel::where('cust_id', Auth::id())->get(),

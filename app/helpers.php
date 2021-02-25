@@ -56,11 +56,21 @@ function usernotification(){
        return 'Your package will expire withing '. intval(30 - ((Carbon::now()->diffInHours($datas->active_date)) / 24));
     }
 
-    return 'Your package expired ' . intval((Carbon::now()->diffInHours($data->active_date)) / 24);
+    return 'Your package expired '. intval((Carbon::now()->diffInHours($datas->active_date)) / 24);
 }
+
+
 
 function get_allpackage()
 {
     return App\Models\PackageModel::all();
 }
+
+
+function get_admins()
+{
+    return App\Models\User::where('type', 1)->get();
+}
+
+
 

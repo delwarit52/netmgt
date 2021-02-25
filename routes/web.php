@@ -24,11 +24,14 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
-Route::get('/', function () {
-    return view('auth.login');
-})->middleware(['auth']);
+
 
 // User Dashboard 
+
+
+
+
+Route::get('/', [DashboardController::class, 'welcome'])->name('welcome');
 
 
 Route::group(['middleware' => 'auth'], function () {
