@@ -331,6 +331,8 @@
         <script type="text/javascript">
             $(document).ready(function() {
                 $('#datatable').DataTable();
+                $('#datatable-active').DataTable();
+                $('#datatable-inactive').DataTable();
 
                 $('#amounttable').DataTable();
 

@@ -37,22 +37,24 @@
                             <div class="table-responsive">
                                 <table class="table mt-4">
                                     <thead>
-                                    <tr><th>Sl No.</th>
-                                        <th>Package Name</th>
-                                        <th>Package Speed</th>
-                                        <th>Package Price</th>
-                                        <th class="text-right">Total</th>
-                                    </tr></thead>
+                                        <tr>
+                                            <th>Sl No.</th>
+                                            <th>Package Name</th>
+                                            <th>Package Speed</th>
+                                            <th>Package Price</th>
+                                            <th class="text-right">Total</th>
+                                        </tr>
+                                    </thead>
                                     <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>
-                                            <b>{{ $single_invioces->package_title }}</b>
-                                        </td>
-                                        <td>{{ $single_invioces->package_title }}</td>
-                                        <td>{{ $single_invioces->package_price }}</td>
-                                        <td class="text-right">{{ $single_invioces->package_price }}</td>
-                                    </tr>
+                                        <tr>
+                                            <td>1</td>
+                                            <td>
+                                                <b>{{ $single_invioces->package_title }}</b>
+                                            </td>
+                                            <td>{{ $single_invioces->package_speed }}</td>
+                                            <td>{{ $single_invioces->package_price }}</td>
+                                            <td class="text-right">{{ $single_invioces->package_price }}</td>
+                                        </tr>
                                     </tbody>
                                 </table>
                             </div>
@@ -83,7 +85,6 @@
                     <div class="hidden-print mt-4 mb-4">
                         <div class="text-right">
                             <a href="javascript:window.print()" class="btn btn-primary waves-effect waves-light"><i class="fa fa-print m-r-5"></i> Print</a>
-                            <a href="#" class="btn btn-info waves-effect waves-light">Submit</a>
                         </div>
                     </div>
                 </div>

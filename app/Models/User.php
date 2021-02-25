@@ -60,4 +60,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(WithdrawModel::class);
     }
+
+    public function customer()
+    {
+        return $this->hasOne(CustomerModel::class);
+    }
 }

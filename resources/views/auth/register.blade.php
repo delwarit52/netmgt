@@ -73,9 +73,9 @@
                                 Register
                             </button>
                         </div>
-
                     </form>
                     <a href="{{ route('login') }}" class="text-sm text-gray-700 underline">Log in</a>
+
                 </div>
             </div><!-- end col -->
         </div>

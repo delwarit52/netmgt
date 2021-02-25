@@ -17,6 +17,7 @@ class CreateInvioceModelsTable extends Migration
             $table->id();
             $table->string('invoice_no');
             $table->string('package_title');
+            $table->string('package_speed');
             $table->string('package_price');
             $table->string('cust_id');
             $table->Integer('status')->default(1); //1->Active, 0->inactive

@@ -47,7 +47,7 @@ class AdminCustomerController extends Controller
 
     public function customerregister(Request $request)
     {
-        
+        // return $request->net_id;
         $request->validate([
             'name' => 'required',
             'phone' => 'required',
@@ -56,7 +56,6 @@ class AdminCustomerController extends Controller
         ]);
         $customer = CustomerModel::where('id', $request->id)->first();
         $package = PackageModel::where('id', $customer->package_id)->first();
-
         $user_id = User::create([
             'name' => $request->name,
             'phone' => $request->phone,
@@ -64,7 +63,9 @@ class AdminCustomerController extends Controller
             'password' => Hash::make($request->password),
         ]);
 
-        $cust_id = CustomerModel::where('id' , $request->id)->update([
+
+        CustomerModel::where('id', $request->id)->update([
+
             'active_date' => Carbon::now(),
             'user_id' => $user_id->id,
             'status' => 1,
@@ -73,13 +74,40 @@ class AdminCustomerController extends Controller
         InvioceModel::create([
             'invoice_no' => "ASF-" . time(),
             'package_title' => $package->package_title,
+            'package_speed' => $package->package_speed,
             'package_price' => $package->package_price,
             'created_by' => Auth::id(),
-            'cust_id' => $user_id->id,
+            'cust_id' => $request->id,
         ]);
 
+        //Start Mobile Sms Notification
+        $to = $request->phone;
+        $token = "ef5ffbea48fcdbb315bffd9d56f8c077";
+        $message = "Congratulation " . $request->name . "!! Welcome to our company.". "\n". "your Id : ". $request->net_id . "\n" . "Your password : " . $request->password;
 
-        
+        $url = "http://api.greenweb.com.bd/api.php?json";
+
+
+
+        $data = array(
+            'to' => "$to",
+            'message' => "$message",
+            'token' => "$token"
+        ); // Add parameters in key value
+        $ch = curl_init(); // Initialize cURL
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_ENCODING, '');
+        curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($data));
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        $smsresult = curl_exec($ch);
+
+        //Result
+        // echo $smsresult;
+        //Error Display
+        // echo curl_error($ch);
+
+        //End Mobile Sms Notification
+
 
         return redirect()->route('customer.activelist')->with('succsess', 'add successfully');
     }
@@ -107,11 +135,38 @@ class AdminCustomerController extends Controller
         InvioceModel::create([
             'invoice_no' => "ASF-" . time(),
             'package_title' => $package->package_title,
+            'package_speed' => $package->package_speed,
             'package_price' => $package->package_price,
             'created_by' => Auth::id(),
             'cust_id' => $id,
             'status' => 1,
         ]);
+        //Start Mobile Sms Notification
+        $to = $cust->phone;
+        $token = "ef5ffbea48fcdbb315bffd9d56f8c077";
+        $message = "Congratulation " . $cust->name . "!! Welcome to our company." . "\n" . "your account is activated";
+
+        $url = "http://api.greenweb.com.bd/api.php?json";
+
+        $data = array(
+            'to' => "$to",
+            'message' => "$message",
+            'token' => "$token"
+        ); // Add parameters in key value
+        $ch = curl_init(); // Initialize cURL
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_ENCODING, '');
+        curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($data));
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        $smsresult = curl_exec($ch);
+
+        //Result
+        // echo $smsresult;
+        //Error Display
+        // echo curl_error($ch);
+
+        //End Mobile Sms Notification
+
         return back()->with('succsess', 'add successfully');
     }
 

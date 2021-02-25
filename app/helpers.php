@@ -60,14 +60,17 @@ function usernotification(){
 }
 
 
+
 function get_allpackage()
 {
     return App\Models\PackageModel::all();
 }
 
+
 function get_admins()
 {
     return App\Models\User::where('type', 1)->get();
 }
+
 
 

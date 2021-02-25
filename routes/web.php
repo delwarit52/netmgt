@@ -24,17 +24,12 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
-Route::get('/', function () {
-    return view('auth.login');
-});
+
 
 // User Dashboard 
 
 
-// Route::get('/dashboard', function () {
-//     // return view('welcome');
-//     return view('dashboard');
-// })->middleware(['auth'])->name('dashboard');
+
 
 Route::get('/', [DashboardController::class, 'welcome'])->name('welcome');
 
@@ -43,6 +38,8 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::post('/get/filter/date', [DashboardController::class, 'filterdate']);
+    Route::get('/send/message', [DashboardController::class, 'sendmessage'])->name('sendmessage');
+    Route::get('/send/message/single/{id}', [DashboardController::class, 'sendmessagesingle'])->name('sendmessage.single');
 
     // profile Routes
     Route::get('/dashboard/profile', [ProfileController::class, 'index'])->name('dashboard.profile');
