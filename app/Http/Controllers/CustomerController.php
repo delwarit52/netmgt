@@ -26,7 +26,7 @@ class CustomerController extends Controller
         return request()->validate([
             'package_id' => 'required',
             'name' => 'required',
-            'email' => ['required', 'unique:customer_models'],
+            'email' => ['unique:customer_models'],
             'phone' => ['required', 'unique:customer_models'],
             'nid' => ['required', 'unique:customer_models'],
             'pon_mac' => ['required'],

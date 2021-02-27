@@ -71,8 +71,6 @@
                                                         </div>
                                                     </div>
                                                 </div>
-
-
                                                 <div class="row">
                                                     <div class="col col-sm-12 col-md-6">
                                                         <div class="form-group">

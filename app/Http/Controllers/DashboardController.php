@@ -36,14 +36,14 @@ class DashboardController extends Controller
         
         if(Auth::user()->type == 3){
             return view('dashboard', [
-                'total_invioce' => InvioceModel::where('cust_id', Auth::id())->get(),
+                'total_invioce' => InvioceModel::where('cust_id', Auth::user()->customer->id)->get(),
             ]);
         }
         return view('dashboard', [
             'customers' => CustomerModel::count(),
             'packages' => PackageModel::count(),
-            'active_customers' => CustomerModel::where('status', 2)->count(),
-            'inactive_customers' => CustomerModel::where('status', '!=', 2)->count(),
+            'active_customers' => CustomerModel::where('status', 1)->count(),
+            'inactive_customers' => CustomerModel::where('status', '!=', 1)->count(),
             'total_incomes' => InvioceModel::sum('package_price'),
             'total_cost' => ExpenseModel::sum('amount'),
             'invoices' => InvioceModel::count(),
@@ -57,13 +57,18 @@ class DashboardController extends Controller
         $start_date = $request->start_date;
         $end_date = $request->end_date;
         $dashboard_data = [
-            'customers' => CustomerModel::whereBetween('created_at', [$start_date, $end_date])->count(),
-            'packages' => PackageModel::whereBetween('created_at', [$start_date, $end_date])->count(),
-            'active_customers' => CustomerModel::where('status', 2)->whereBetween('created_at', [$start_date, $end_date])->count(),
-            'inactive_customers' => CustomerModel::where('status', '!=', 2)->whereBetween('created_at', [$start_date, $end_date])->count(),
-            'invoices' => InvioceModel::whereBetween('created_at', [$start_date, $end_date])->count(),
-            'total_incomes' => InvioceModel::whereBetween('created_at', [$start_date, $end_date])->sum('package_price'),
-            'total_cost' => ExpenseModel::whereBetween('created_at', [$start_date, $end_date])->sum('amount'),
+            'customers' => CustomerModel::whereDate('created_at', '>=', $start_date)->whereDate('created_at', '<=', $end_date)->count(),
+           
+            'packages' => PackageModel::whereDate('created_at', '>=', $start_date)->whereDate('created_at', '<=', $end_date)->count(),
+
+            'active_customers' => CustomerModel::where('status', 1)->whereDate('created_at', '>=', $start_date)->whereDate('created_at', '<=', $end_date)->count(),
+
+            'inactive_customers' => CustomerModel::where('status', '!=', 1)->whereDate('created_at', '>=', $start_date)->whereDate('created_at', '<=', $end_date)->count(),
+
+            'invoices' => InvioceModel::whereDate('created_at', '>=', $start_date)->whereDate('created_at', '<=', $end_date)->count(),
+            
+            'total_incomes' => InvioceModel::whereDate('created_at', '>=', $start_date)->whereDate('created_at', '<=', $end_date)->sum('package_price'),
+            'total_cost' => ExpenseModel::whereDate('created_at', '>=', $start_date)->whereDate('created_at', '<=', $end_date)->sum('amount'),
         ];
         return $dashboard_data;
     }
