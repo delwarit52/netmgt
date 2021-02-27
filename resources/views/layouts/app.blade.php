@@ -117,8 +117,6 @@
                             @else
                                 <img src="{{ asset('storage/'.Auth::user()->profile_img) }}" alt="user-img" title="Mat Helme" class="rounded-circle img-thumbnail img-responsive">
                             @endif
-                            
-                            
                             <div class="user-status offline"><i class="mdi mdi-adjust"></i></div>
                         </div>
                         <h5><a href="#">{{ Auth::user()->name }}</a> </h5>

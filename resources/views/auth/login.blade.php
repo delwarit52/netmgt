@@ -31,7 +31,7 @@
                     <form method="POST" action="{{ route('login') }}" class="form-horizontal" role="form" data-parsley-validate novalidate>
                         @csrf
                         <div class="form-group">
-                            <label for="emailAddress">Email address*</label>
+                            <label for="emailAddress">Email or User ID*</label>
                             <input type="text" name="email" parsley-trigger="change" 
                                    placeholder="Enter email" class="form-control" id="emailAddress">
                         </div>

@@ -22,7 +22,7 @@ class InvioceModelController extends Controller
     public function singleinvioce($id)
     {
         return view('pages.singleinvioce', [
-            'single_invioces' => InvioceModel::find($id)->first(),
+            'single_invioces' => InvioceModel::where('id',$id)->first(),
         ]);
     }
 }
